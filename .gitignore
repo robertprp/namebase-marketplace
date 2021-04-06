@@ -1,2 +1,5 @@
 venv/
 .idea/
+namebase_marketplace.egg-info/
+dist/
+setup.cfg
