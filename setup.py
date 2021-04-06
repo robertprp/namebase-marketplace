@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="namebase-marketplace",
-    version="0.0.7",
+    version="0.1",
     python_requires='>=3.6',
     author="Roberto Pérez (pretended)",
     author_email="robertforperez@gmail.com",
