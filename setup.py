@@ -12,9 +12,9 @@ setuptools.setup(
     description="Python Client to interact with the Namebase Marketplace API",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/wy/namebase-exchange-python",
+    url="https://github.com/pretended/namebase-marketplace",
     packages=setuptools.find_packages(),
-    install_requires=['requests'],
+    install_requires=['requests', 'urllib'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
