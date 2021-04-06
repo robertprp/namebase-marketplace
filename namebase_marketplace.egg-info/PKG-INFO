@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: namebase-marketplace
-Version: 0.1.2
+Version: 0.1.4
 Summary: Python Client to interact with the Namebase Marketplace API
 Home-page: https://github.com/pretended/namebase-marketplace
 Author: Roberto Pérez (pretended)
