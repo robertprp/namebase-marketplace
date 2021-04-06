@@ -3,4 +3,3 @@ venv/
 namebase_marketplace.egg-info/
 dist/
 setup.cfg
-/namebase_marketplace.egg-info
