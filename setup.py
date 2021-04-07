@@ -8,7 +8,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name="namebase-marketplace",
-    version="0.1.4",
+    version="0.1.5",
     python_requires='>=3.6',
     author="Roberto Pérez (pretended)",
     author_email="robertforperez@gmail.com",
@@ -17,7 +17,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/pretended/namebase-marketplace",
     packages=setuptools.find_packages(),
-    install_requires=['requests', 'urllib'],
+    install_requires=['requests'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",

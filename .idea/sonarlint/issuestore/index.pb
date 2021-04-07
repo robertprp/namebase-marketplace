@@ -14,3 +14,11 @@ M
 namebase_marketplace/enums.py,6\d\6dbd718d2f92d196757e1ed778e9bf524319480d
 S
 #namebase_marketplace/marketplace.py,a\a\aa55c00bb9f4559960248db0e96926ca1182e2f6
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+@
+requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
+;
+docs/deploy,6\0\60402c0f29d016ad7fba6402d8ddf0cf9eab4c90
+9
+	setup.cfg,8\c\8c91c0296909b5ea3c496fde69e9dc44a6c6ae5f
