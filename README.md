@@ -14,7 +14,7 @@ Namebase Marketplace Api for Python
 <a href="/LICENCE">
 <img src="https://img.shields.io/github/license/pretended/namebase-marketplace" alt="MIT Licence"/>
 </a>
-
+[![Downloads](https://pepy.tech/badge/namebase-marketplace/week)](https://pepy.tech/project/namebase-marketplace)
 
 Python 3.6+ client for interacting with Namebase Marketplace API.
 
