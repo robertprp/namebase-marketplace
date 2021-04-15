@@ -14,7 +14,7 @@ class Endpoint():
     GET_DOMAIN = '/api/domains/get/'
     WATCH_DOMAIN = '/api/domains/watch/'
 
-class Utils(Enum):
+class Utils():
     BID = '/bid'
     HISTORY = '/history'
     BUY_NOW = '/buynow'
