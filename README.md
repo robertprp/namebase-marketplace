@@ -44,4 +44,11 @@ marketplace.get_user_info()
 marketplace.open_bid(domain='domain', bid_amount=0.4, blind_amount=100)
 ```
 
+EXAMPLE WITHOUT AUTHENTICATION:
+```python
+from namebase_marketplace.marketplace import *
+marketplace = Marketplace()
+marketplace.get_marketplace_domains(offset=100) # Get 101-200 latest marketplace domains with default options
+```
+
 On some endpoints you can pass options, please refer them to the following documentation: https://github.com/namebasehq/api-documentation/blob/master/marketplace-api.md
