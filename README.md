@@ -14,8 +14,9 @@ Namebase Marketplace Api for Python
 <a href="/LICENCE">
 <img src="https://img.shields.io/github/license/pretended/namebase-marketplace" alt="MIT Licence"/>
 </a>
-
-
+<img src="https://static.pepy.tech/badge/namebase-marketplace/week"/>
+<a href="https://lgtm.com/projects/g/pretended/namebase-marketplace/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/pretended/namebase-marketplace.svg?logo=lgtm&logoWidth=18"/></a>
+  
 Python 3.6+ client for interacting with Namebase Marketplace API.
 
 ## Usage

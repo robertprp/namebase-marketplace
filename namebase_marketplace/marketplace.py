@@ -2,7 +2,6 @@
 Description:
     Implements Python client library for Namebase marketplace API.
 """
-from typing import Optional
 from namebase_marketplace.enums import Endpoint, Utils
 from namebase_marketplace.utils import Request
 
