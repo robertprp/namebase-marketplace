@@ -1,8 +1,6 @@
 __all__ = ['Utils']
 API_VERSION = 'v0'
 
-from enum import Enum
-
 
 class Endpoint():
     MARKETPLACE = '/api/domains/marketplace/'
