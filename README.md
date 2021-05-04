@@ -52,3 +52,9 @@ marketplace.get_marketplace_domains(offset=100) # Get 101-200 latest marketplace
 ```
 
 On some endpoints you can pass options, please refer them to the following documentation: https://github.com/namebasehq/api-documentation/blob/master/marketplace-api.md
+
+### Donations
+
+I have made this library open-sourced and free to use. However, if you consider this library has helped you, or you just want to sponsor me, donations are welcomed to one of my HANDSHAKE addresses. 
+
+> hs1qynh72cuj7lawdcmvjtls4kk0p4auzmj5qq6v3r
