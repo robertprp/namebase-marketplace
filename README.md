@@ -36,7 +36,7 @@ Websocket API is not provided.
 
 ### Usage
 
-Core REST API for Namebase MARKETPLACE
+##### Core REST API for Namebase MARKETPLACE
 ```python
 from namebase_marketplace.marketplace import *
 marketplace = Marketplace(email="YOUR EMAIL", pwd="YOUR PASSWORD")
@@ -44,7 +44,7 @@ marketplace.get_user_info()
 marketplace.open_bid(domain='domain', bid_amount=0.4, blind_amount=100)
 ```
 
-EXAMPLE WITHOUT AUTHENTICATION:
+##### EXAMPLE WITHOUT AUTHENTICATION:
 ```python
 from namebase_marketplace.marketplace import *
 marketplace = Marketplace()
