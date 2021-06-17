@@ -7,11 +7,12 @@ from namebase_marketplace.utils import Request
 
 import requests
 import urllib.parse
+import json
 
 DEFAULT_API_ROOT = "https://www.namebase.io"
 
 
-def get_cookies(email, pwd):
+def _get_cookies(email, pwd):
     if email is None or pwd is None:
         return None
     params = {
@@ -38,7 +39,10 @@ class Marketplace:
             "Accept": 'application/json',
             "Content-Type": 'application/json',
         }
-        self.cookies = get_cookies(email=email, pwd=pwd)
+        # self.cookies = _get_cookies(email=email, pwd=pwd)
+        self.cookies = {
+            "namebase-main": "s:lF1E-iBBROXW7c-8Xfw4mABFV6PUtlnR.VEUq2E4w2E5Tv9Mqa++8iWJ1HRYL/O8c+UXDL/dhOpI"
+        }
         self.request = Request(api_base_url=api_root,
                                headers=headers,
                                cookies=self.cookies,
@@ -69,26 +73,47 @@ class Marketplace:
         return self.request.get(Endpoint.SALE_HISTORY + f'{offset}{mark}{encode_dict(options)}')
 
     def get_domain_sale_history(self, domain: str):
-        return self.request.get(Endpoint.MARKETPLACE + f'{domain}' + Utils.HISTORY)
+        return self.request.get(Endpoint.DOMAIN_HISTORY + f'{domain}' + Utils.HISTORY)
 
-    def list_domain(self, domain: str, options: dict):
-        return self.request.post(Endpoint.MARKETPLACE + f'{domain}{Utils.LIST}&{encode_dict(options)}')
+    def list_domain(self, domain: str, amount, description="", asset="HNS", options={}):
+        """
+        @:param options: dict
 
-    def update_domain(self, domain: str, options: dict):
-        return self.list_domain(domain=domain, options=options)
+        You can send options to this endpoint as an example:
+        options = {"amount":"4344","asset":"HNS","description":"test"}
+        """
+        params = {"amount": Utils.parse_bid(amount), "asset": asset, "description": description}
+        mark = '?'
+        if options is None:
+            options = {}
+            mark = ''
+        return self.request.post(Endpoint.DOMAIN_HISTORY + f'{domain}{Utils.LIST}{mark}{encode_dict(options)}',
+                                 data=params, json_data=params)
+
+    def update_domain(self, domain: str, amount, description="", asset="HNS", options={}):
+        """
+        @:param options: dict
+
+        You can send options to this endpoint as an example:
+        options = {"amount":"4344","asset":"HNS","description":"test"}
+        """
+        return self.list_domain(domain=domain, amount=amount, description=description, asset=asset, options=options)
 
     def cancel_listing(self, domain: str):
-        return self.request.post(Endpoint.MARKETPLACE + f'{domain}{Utils.CANCEL}')
+        """ Removes domain from marketplace. """
+        return self.request.post(Endpoint.DOMAIN_HISTORY + f'{domain}{Utils.CANCEL}', data={}, json_data={})
 
-    def purchase_now(self, domain: str):
-        return self.request.post(Endpoint.MARKETPLACE + f'{domain}{Utils.BUY_NOW}')
+    def purchase_now(self, domain: str, listing_id: str):
+        params = {"listingId": listing_id}
+        return self.request.post(Endpoint.DOMAIN_HISTORY + f'{domain}{Utils.BUY_NOW}', data=params, json_data=params)
 
     def open_bid(self, domain: str, bid_amount, blind_amount):
         params = {
             "bidAmount": Utils.parse_bid(amount=bid_amount),
             "blindAmount": Utils.parse_bid(amount=blind_amount)
         }
-        return self.request.post(Endpoint.OPEN_BID + f'{domain}{Utils.BID}', params=params)
+
+        return self.request.post(Endpoint.OPEN_BID + f'{domain}{Utils.BID}', data=params)
 
     def create_bid(self, domain: str, bid_amount, blind_amount):
         """@Wrapper method"""
@@ -103,10 +128,43 @@ class Marketplace:
 
     def make_offer(self, domain: str, amount):
         params = {"buyOfferAmount": Utils.parse_bid(amount=amount)}
-        return self.request.post(Endpoint.OPEN_BID + f'{domain}{Utils.BID}', params=params)
+        return self.request.post(Endpoint.MAKE_OFFER + f'{domain}{Utils.BID}', data=params, json_data=params)
 
     def get_domain_info(self, domain: str):
         return self.request.get(Endpoint.GET_DOMAIN + f'{domain}')
 
+    def get_domain_price(self, domain: str):
+        res = self.request.get(Endpoint.MAKE_OFFER + f'{domain}')
+        if not res['listing']:
+            raise Exception("Domain is not listed.")
+        else:
+            return Utils.get_real_amount(res['listing']['amount'])
+
     def add_to_watchlist(self, domain: str):
-        return self.request.post(Endpoint.WATCH_DOMAIN + f'{domain}', params={})  # as in namebase
+        return self.request.post(Endpoint.WATCH_DOMAIN + f'{domain}', params={}, data={})  # as in namebase
+
+    def remove_from_watchlist(self, domain: str):
+        return self.add_to_watchlist(domain=domain)
+
+    def get_my_domains(self, offset=0, options={}):
+        limit = 100
+        if not options:
+            options = "sortKey=acquiredAt&sortDirection=desc&limit=" + str(limit)
+        url = Endpoint.MY_DOMAINS + f'{offset}?{options}'
+        totalCount =  self.request.get(url)['totalCount']
+        domains = []
+        while totalCount > 0:
+            totalCount -= 100
+            url = Endpoint.MY_DOMAINS + f'{offset}?{options}'
+            res = self.request.get(url)
+            [domains.append(i) for i in res['domains']]
+            offset += 100
+        return domains
+
+    def get_my_onsale_domains(self):
+        return self.request.get(Endpoint.MY_SALE_DOMAINS)
+
+    def consent_offers(self, domain: str, consent: bool):
+        params = {"doesConsentToOffers": consent}
+        return self.request.post(Endpoint.DOMAIN_HISTORY + f'{domain}{Utils.CONSENT}', data=params,
+                                 json_data=params)  # as in namebase

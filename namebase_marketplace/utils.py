@@ -29,8 +29,20 @@ class Request(object):
     def post(self, path, data=None, json_data=None, params=None):
         """POST request"""
         url = self.url + path
-        r = requests.post(url=url, data=data, json=json_data, params=params, timeout=self.timeout,
+        print(data)
+        r = requests.post(url=url, data=json.dumps(data), json=json_data, params=json.dumps(params), timeout=self.timeout,
                           headers=self.headers, cookies=self.cookies)
+        try:
+            r.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            return json.loads(e.response.content)
+        return r.json()
+
+    def put(self, path, data=None, json_data=None, params=None):
+        """PUT request"""
+        url = self.url + path
+        r = requests.put(url=url, data=data, json=json_data, params=params, timeout=self.timeout,
+                         headers=self.headers, cookies=self.cookies)
         try:
             r.raise_for_status()
         except requests.exceptions.HTTPError as e:

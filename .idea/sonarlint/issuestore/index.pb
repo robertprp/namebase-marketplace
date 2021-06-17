@@ -22,3 +22,5 @@ S
 docs/deploy,6\0\60402c0f29d016ad7fba6402d8ddf0cf9eab4c90
 9
 	setup.cfg,8\c\8c91c0296909b5ea3c496fde69e9dc44a6c6ae5f
+P
+ namebase_marketplace/__init__.py,c\6\c6fd8af16162f7b9d747ac53b17d8e7262c182a6
