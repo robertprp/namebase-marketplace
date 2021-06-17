@@ -39,10 +39,8 @@ class Marketplace:
             "Accept": 'application/json',
             "Content-Type": 'application/json',
         }
-        # self.cookies = _get_cookies(email=email, pwd=pwd)
-        self.cookies = {
-            "namebase-main": "s:lF1E-iBBROXW7c-8Xfw4mABFV6PUtlnR.VEUq2E4w2E5Tv9Mqa++8iWJ1HRYL/O8c+UXDL/dhOpI"
-        }
+
+        self.cookies = _get_cookies(email=email, pwd=pwd)
         self.request = Request(api_base_url=api_root,
                                headers=headers,
                                cookies=self.cookies,
