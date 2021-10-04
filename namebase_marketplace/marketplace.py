@@ -34,13 +34,13 @@ def encode_dict(dictionary):
 
 
 class Marketplace:
-    def __init__(self, email=None, pwd=None, api_root=DEFAULT_API_ROOT):
+    def __init__(self, email=None, pwd=None, namebase_cookie=None, api_root=DEFAULT_API_ROOT):
         headers = {
             "Accept": 'application/json',
             "Content-Type": 'application/json',
         }
 
-        self.cookies = _get_cookies(email=email, pwd=pwd)
+        self.cookies = _get_cookies(email=email, pwd=pwd) if not namebase_cookie else {"namebase-main" : namebase_cookie}
         self.request = Request(api_base_url=api_root,
                                headers=headers,
                                cookies=self.cookies,

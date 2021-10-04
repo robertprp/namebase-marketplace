@@ -1,59 +1,11 @@
 Metadata-Version: 2.1
 Name: namebase-marketplace
-Version: 0.2.2
+Version: 0.2.6
 Summary: Python Client to interact with the Namebase Marketplace API
 Home-page: https://github.com/pretended/namebase-marketplace
-Author: Roberto Pérez (pretended)
+Author: Roberto Pérez Rico (pretended)
 Author-email: robertforperez@gmail.com
 License: UNKNOWN
-Description: Namebase Marketplace Api for Python
-        ==
-        
-        <p>
-        <a href="https://namebase-marketplace.readthedocs.io/en/latest/">
-        <img src="https://readthedocs.org/projects/namebase-exchange-python/badge/?version=latest" alt="Open Issues"/>
-        </a>
-        <a href="/issues">
-        <img src="https://img.shields.io/github/issues/pretended/namebase-marketplace" alt="Open Issues"/>
-        </a>
-        <a href="https://pypi.org/project/namebase-marketplace/">
-        <img src="https://img.shields.io/pypi/v/namebase-marketplace.svg" alt="PyPI"/>
-        </a>
-        <a href="/LICENCE">
-        <img src="https://img.shields.io/github/license/pretended/namebase-marketplace" alt="MIT Licence"/>
-        </a>
-        <img src="https://static.pepy.tech/badge/namebase-marketplace/week"/>
-        <a href="https://lgtm.com/projects/g/pretended/namebase-marketplace/context:python"><img alt="Language grade: Python" src="https://img.shields.io/lgtm/grade/python/g/pretended/namebase-marketplace.svg?logo=lgtm&logoWidth=18"/></a>
-          
-        Python 3.6+ client for interacting with Namebase Marketplace API.
-        
-        ## Usage
-        Instantiating the Marketplace object can be done either by using email and password or None.
-        Only post requests can be made authenticated.
-        
-        Websocket API is not provided.
-        ## Installation
-        
-        ### Requirements
-        
-        - Python 3.6 or greater
-        
-        ### Install
-        
-        > pip install namebase-marketplace
-        
-        ### Usage
-        
-        Core REST API for Namebase MARKETPLACE
-        ```python
-        from namebase_marketplace.marketplace import *
-        marketplace = Marketplace(email="YOUR EMAIL", pwd="YOUR PASSWORD")
-        marketplace.get_user_info()
-        marketplace.open_bid(domain='domain', bid_amount=0.4, blind_amount=100)
-        ```
-        
-        On some endpoints you can pass options, please refer them to the following documentation: https://github.com/namebasehq/api-documentation/blob/master/marketplace-api.md
-        
 Platform: UNKNOWN
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.6
@@ -65,3 +17,78 @@ Classifier: Topic :: Software Development :: Libraries :: Python Modules
 Classifier: Natural Language :: English
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
+License-File: LICENSE
+
+Namebase Marketplace Api for Python
+==
+
+<p>
+<a href="https://namebase-marketplace.readthedocs.io/en/latest/">
+<img src="https://readthedocs.org/projects/namebase-exchange-python/badge/?version=latest" alt="Open Issues"/>
+</a>
+<a href="/issues">
+<img src="https://img.shields.io/github/issues/pretended/namebase-marketplace" alt="Open Issues"/>
+</a>
+<a href="https://pypi.org/project/namebase-marketplace/">
+<img src="https://img.shields.io/pypi/v/namebase-marketplace.svg" alt="PyPI"/>
+</a>
+<a href="/LICENCE">
+<img src="https://img.shields.io/github/license/pretended/namebase-marketplace" alt="MIT Licence"/>
+</a>
+<img src="https://static.pepy.tech/badge/namebase-marketplace/week"/>
+
+  
+Python 3.6+ client for interacting with Namebase Marketplace API.
+
+## Usage
+Instantiating the Marketplace object can be done either by using email and password or None.
+Only post requests can be made authenticated.
+
+Websocket API is not provided.
+## Installation
+
+### Requirements
+
+- Python 3.6 or greater
+
+### Install
+
+> pip install namebase-marketplace
+
+### Usage
+
+##### Core REST API for Namebase MARKETPLACE
+```python
+from namebase_marketplace.marketplace import *
+marketplace = Marketplace(email="YOUR EMAIL", pwd="YOUR PASSWORD")
+marketplace.get_user_info()
+marketplace.open_bid(domain='domain', bid_amount=0.4, blind_amount=100)
+```
+
+##### EXAMPLE WITHOUT AUTHENTICATION:
+```python
+from namebase_marketplace.marketplace import *
+marketplace = Marketplace()
+marketplace.get_marketplace_domains(offset=100) # Get 101-200 latest marketplace domains with default options
+```
+
+  
+On some endpoints you can pass options, please refer them to the following documentation: https://github.com/namebasehq/api-documentation/blob/master/marketplace-api.md
+
+### Github OAuth bypass and 2FA Auth Bypass
+You can bypass these restrictions to use this library by replacing the following code on your namebase_marketplace package and marketplace class:
+  
+  ```python
+   self.cookies = { "namebase-main": "s:lF21222EXX2323c-EXAMPLE.THIS_IS_AN_EXAMPLE++121HRYL/23+42c/12hOEEXAMPLE223" } 
+```
+  
+  This is the cookie Namebase uses to auth you within the app. You can find this cookie when reloading any page and going to Network on Inspection Mode. Head to a request and find this cookie under "Cookies" tab on any explorer along with other kind of cookies.
+
+  
+### Donations
+
+I have made this library open-sourced and free to use. However, if you consider this library has helped you, or you just want to sponsor me, donations are welcomed to one of my HANDSHAKE addresses. 
+
+> hs1qynh72cuj7lawdcmvjtls4kk0p4auzmj5qq6v3r
+
+
