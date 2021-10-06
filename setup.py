@@ -8,7 +8,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name="namebase-marketplace",
-    version="0.2.7",
+    version="0.2.82",
     python_requires='>=3.6',
     author="Roberto Pérez Rico (pretended)",
     author_email="robertforperez@gmail.com",

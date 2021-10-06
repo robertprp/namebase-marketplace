@@ -25,9 +25,9 @@ def _get_cookies(email, pwd):
     return cookies
 
 
-def encode_dict(dictionary):
+def encode_dict(dictionary, lower=True):
     if dictionary:
-        lowered_dict = dict([(k, str(v).lower()) for k, v in dictionary.items()])
+        lowered_dict = dict([(k, str(v).lower() if lower else str(v)) for k, v in dictionary.items()])
         return urllib.parse.urlencode(lowered_dict)
     else:
         return ''
@@ -166,3 +166,49 @@ class Marketplace:
         params = {"doesConsentToOffers": consent}
         return self.request.post(Endpoint.DOMAIN_HISTORY + f'{domain}{Utils.CONSENT}', data=params,
                                  json_data=params)  # as in namebase
+
+    def transfer_domain_on_chain(self, domain: str, hns_address: str):
+        """
+        Test response: {"transferId":"<transferID>","type":"internal","success":true}
+        """
+        params = {"address" : hns_address}
+        return self.request.post(Endpoint.API_DOMAINS + f'{domain}' + Utils.TRANSFER, data=params, json_data=params)
+
+    def get_offers(self):
+        query_string_params = {
+            'offset' : 0,
+            'sortKey': "createdAt",
+            'sortDirection': 'desc'
+        }
+        # default offset is set to 15 per request
+        res = self.request.get(Endpoint.OFFERS_RECEIVED + f'?{encode_dict(query_string_params, lower=False)}')
+        n_domains = res['totalCount']
+        domains = res['domains']
+        doms = []
+        while n_domains > 0:
+            for domain in domains:
+                name = domain['domain']
+                highestOffer = domain['highestCurrentOffer']
+                domainOwnerId = domain['domainOwnerId']
+                domainInfo = {
+                    "name": name,
+                    "offer": highestOffer,
+                    "ownerId": domainOwnerId
+                }
+                doms.append(domainInfo)
+            query_string_params['offset'] = query_string_params['offset'] + 15
+            n_domains = n_domains - 15
+            res = self.request.get(Endpoint.OFFERS_RECEIVED + f'?{encode_dict(query_string_params, lower=False)}')
+            domains = res['domains']
+
+        return doms
+    def accept_offer(self, offer_id):
+        params = {
+            'bidId': offer_id
+        }
+        return self.request.post(Endpoint.ACCEPT_OFFER_BID, data=params, json_data=params)
+    def get_offers_domain_history(self, domainOwnerId):
+        params = {
+            'domainOwnerId' : domainOwnerId
+        }
+        return self.request.get(Endpoint.OFFERS_HISTORY + f'?{encode_dict(params, lower=False)}')

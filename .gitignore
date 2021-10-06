@@ -6,3 +6,5 @@ setup.cfg
 /namebase_marketplace.egg-info/
 /.idea
 /venv
+/script
+script/*
