@@ -55,9 +55,15 @@ from namebase_marketplace.marketplace import *
 marketplace = Marketplace()
 marketplace.get_marketplace_domains(offset=100) # Get 101-200 latest marketplace domains with default options
 ```
-#### Recent upgrades
-New auth method has been added (now you can auth yourself by using the namebase_cookie
+
+On some endpoints you can pass options, please refer them to the following documentation: https://github.com/namebasehq/api-documentation/blob/master/marketplace-api.md
+
+### Github OAuth bypass and 2FA Auth Bypass
   
+#### Recent upgrades
+New auth method has been added, now you can auth yourself by using the namebase_cookie in case you cant (or dont want to) login via email-password.
+  
+This is the cookie Namebase uses to auth you within the app. You can find this cookie when reloading any page and going to Network on Inspection Mode. Head to a request and find this cookie under "Cookies" tab on any explorer along with other kind of cookies. Cookie name is called "namebase-main".
   
 ###### Example
 ```python
@@ -67,18 +73,7 @@ marketplace.get_user_info()
 marketplace.open_bid(domain='domain', bid_amount=0.4, blind_amount=100)
 ```
   
-On some endpoints you can pass options, please refer them to the following documentation: https://github.com/namebasehq/api-documentation/blob/master/marketplace-api.md
 
-### Github OAuth bypass and 2FA Auth Bypass
-You can bypass these restrictions to use this library by replacing the following code on your namebase_marketplace package and marketplace class:
-  
-  ```python
-   self.cookies = { "namebase-main": "s:lF21222EXX2323c-EXAMPLE.THIS_IS_AN_EXAMPLE++121HRYL/23+42c/12hOEEXAMPLE223" } 
-```
-  
-  This is the cookie Namebase uses to auth you within the app. You can find this cookie when reloading any page and going to Network on Inspection Mode. Head to a request and find this cookie under "Cookies" tab on any explorer along with other kind of cookies.
-
-  
 ### Donations
 
 I have made this library open-sourced and free to use. However, if you consider this library has helped you, or you just want to sponsor me, donations are welcomed to one of my HANDSHAKE addresses. 
