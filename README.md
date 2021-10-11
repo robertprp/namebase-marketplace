@@ -55,11 +55,11 @@ from namebase_marketplace.marketplace import *
 marketplace = Marketplace()
 marketplace.get_marketplace_domains(offset=100) # Get 101-200 latest marketplace domains with default options
 ```
-##### Recent upgrades
+#### Recent upgrades
 New auth method has been added (now you can auth yourself by using the namebase_cookie
   
   
-# Example
+###### Example
 ```python
 from namebase_marketplace.marketplace import *
 marketplace = Marketplace(namebase_cookie="<My_namebase_cookie>")
