@@ -33,6 +33,11 @@ Websocket API is not provided.
 ### Install
 
 > pip install namebase-marketplace
+  
+  
+### Upgrade
+  
+> pip install --upgrade namebase-marketplace
 
 ### Usage
 
@@ -50,7 +55,17 @@ from namebase_marketplace.marketplace import *
 marketplace = Marketplace()
 marketplace.get_marketplace_domains(offset=100) # Get 101-200 latest marketplace domains with default options
 ```
-
+##### Recent upgrades
+New auth method has been added (now you can auth yourself by using the namebase_cookie
+  
+  
+# Example
+```python
+from namebase_marketplace.marketplace import *
+marketplace = Marketplace(namebase_cookie="<My_namebase_cookie>")
+marketplace.get_user_info()
+marketplace.open_bid(domain='domain', bid_amount=0.4, blind_amount=100)
+```
   
 On some endpoints you can pass options, please refer them to the following documentation: https://github.com/namebasehq/api-documentation/blob/master/marketplace-api.md
 
