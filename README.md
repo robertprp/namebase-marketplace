@@ -74,7 +74,7 @@ marketplace.open_bid(domain='domain', bid_amount=0.4, blind_amount=100)
 ```
   
 
-### Donations
+## Donations
 
 I have made this library open-sourced and free to use. However, if you consider this library has helped you, or you just want to sponsor me, donations are welcomed to one of my HANDSHAKE addresses. 
 
