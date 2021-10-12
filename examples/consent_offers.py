@@ -4,7 +4,7 @@ from namebase_marketplace import marketplace
 from script.script_c import Script
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Consent offers on a specific domain. In order to disallow or not consent a domain to receive offers you just need to run the script without the --consent flag.')
+    parser = argparse.ArgumentParser(description='Consent offers on a specific domain. In order to disallow or not consent a domain to receive offers you just need to run the test without the --consent flag.')
 
     parser.add_argument('--cookie', required=True,  help='Input your namebase cookie (namebase-main).')
     parser.add_argument('--domain', dest='domain', required=True, type=str,

@@ -3,8 +3,8 @@ venv/
 namebase_marketplace.egg-info/
 dist/
 setup.cfg
-/namebase_marketplace.egg-info/
+/namebase_marketplace.egg-info
 /.idea
 /venv
-/script
-script/*
+.github/
+/.github

@@ -108,33 +108,33 @@ class Script:
                 self.m.accept_offer(offer_id=offer['id'])
                 print(f"NEW SALE - Name {offer['domain_name']} was just sold for {offer['amount']} HNS.")
         else:
-            print('Please, relaunch the script whenever you want to sell domains. Bye.')
+            print('Please, relaunch the test whenever you want to sell domains. Bye.')
             sys.exit(0)
 
 # if __name__ == '__main__':
 #     marketplace = marketplace.Marketplace()
-#     script = Script(marketplace)
+#     test = Script(marketplace)
 #     """Sell domains."""
 #     """This will put all your domains not for sale at a price of 200HNS with description TEST"""
-#     #script.sell_domains(price=200, description='Test', custom_domains=False)
+#     #test.sell_domains(price=200, description='Test', custom_domains=False)
 #     """This will put domains you give the method not for sale at a price of 200HNS with description TEST"""
 #     domains = ['mydomain', 'mysecondomain']
-#     #script.sell_domains( price=200, description='Test', custom_domains=True, domains=domains)
+#     #test.sell_domains( price=200, description='Test', custom_domains=True, domains=domains)
 #
 #     """Consent Potential Offers."""
-#     script.consent_potential_offers( domain='domain',
+#     test.consent_potential_offers( domain='domain',
 #                              consent=False)  # Do not allow people send offers to domain 'domain'.
-#     script.consent_potential_offers( domain='domain',
+#     test.consent_potential_offers( domain='domain',
 #                              consent=True)  # Do allow people send offers to domain 'domain'.
 #
 #     """Remove all my selling domains from sale """
-#     script.remove_all_names_from_selling_page()
+#     test.remove_all_names_from_selling_page()
 #
 #
 #     """Edit domain sale description"""
 #     new_description = 'New desc'
 #     domain = 'test_domain'
-#     script.edit_domain_sale_description(domain, new_description)
+#     test.edit_domain_sale_description(domain, new_description)
 #
 #     """Get the list of all names I am selling with urls on namebase"""
-#     script.get_domains_on_sale()
+#     test.get_domains_on_sale()
