@@ -3,7 +3,7 @@
 Launch these premade scripts on console.
 
 ### Help
-> python3 <file>.py --help
+> python3 <<filename.py>> --help
 
 ###### Only cookie auth is allowed on these scripts.
 
