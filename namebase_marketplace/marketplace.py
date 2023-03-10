@@ -145,18 +145,18 @@ class Marketplace:
         return self.add_to_watchlist(domain=domain)
 
     def get_my_domains(self, offset=0, options={}):
-        limit = 100
         if not options:
-            options = "sortKey=acquiredAt&sortDirection=desc&limit=" + str(limit)
-        url = Endpoint.MY_DOMAINS + f'{offset}?{options}'
-        totalCount =  self.request.get(url)['totalCount']
+            options = "sortKey=acquiredAt&sortDirection=desc"
+        url = Endpoint.MY_DOMAINS + f'/{offset}?{options}'
+        response = self.request.get(url)
+        response_domains = response['domains']
         domains = []
-        while totalCount > 0:
-            totalCount -= 100
-            url = Endpoint.MY_DOMAINS + f'{offset}?{options}'
-            res = self.request.get(url)
-            [domains.append(i) for i in res['domains']]
-            offset += 100
+        while len(response_domains) > 0:
+            [domains.append(i) for i in response_domains]
+            offset += 1
+            url = Endpoint.MY_DOMAINS + f'/{offset}?{options}'
+            response_domains = self.request.get(url)
+            response_domains = response_domains['domains']
         return domains
 
     def get_my_onsale_domains(self):
